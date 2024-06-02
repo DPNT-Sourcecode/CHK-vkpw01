@@ -15,6 +15,15 @@ public class SpecialOffer {
         offers.add(new Offer(sku, quantity, price));
     }
 
+    public boolean containsOfferWithSku(char sku) {
+        for (Offer offer : offers) {
+            if (offer.sku == sku) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static class Offer {
 
         private final char sku;
@@ -27,4 +36,5 @@ public class SpecialOffer {
         }
     }
 }
+
 

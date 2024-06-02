@@ -43,6 +43,9 @@ public class PricingFactory {
         SKU_SPECIAL_OFFERS.get('A');
 
         for (SpecialOffer specialOffer : SKU_SPECIAL_OFFERS.values()) {
+            if(specialOffer.containsOfferWithSku(sku)) {
+
+            }
 
         }
 
@@ -57,4 +60,5 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
+
 
