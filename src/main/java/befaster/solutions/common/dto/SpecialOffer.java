@@ -29,15 +29,6 @@ public class SpecialOffer {
         return result;
     }
 
-    public int getPriceForSku(char sku) {
-        for (Offer offer : offers) {
-            if (offer.getSku() == sku) {
-                return offer.getFreeItemSkuPrice();
-            }
-        }
-
-        return 0;
-    }
 
     public Offer getBestOfferWithSku(char sku, int quantity) {
 
@@ -123,4 +114,3 @@ public class SpecialOffer {
     }
 
 }
-
