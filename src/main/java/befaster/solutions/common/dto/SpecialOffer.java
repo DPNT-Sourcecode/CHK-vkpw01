@@ -1,24 +1,30 @@
 package befaster.solutions.common.dto;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public record SpecialOffer(Map<Character, List<Offer>> offers) {
+public class SpecialOffer {
+
+    private final List<Offer> offers;
 
     public SpecialOffer() {
-        this(new HashMap<>());
+        this.offers = new ArrayList<>();
     }
 
-    public void addOffer(char sku, int quantity, int price, char freeItem) {
-        offers.computeIfAbsent(sku, k -> new ArrayList<>()).add(new Offer(quantity, price, freeItem));
+    public void addOffer(char sku, int quantity, int price) {
+        offers.add(new Offer(sku, quantity, price));
     }
 
-    public List<Offer> getOffers(char sku) {
-        return offers.getOrDefault(sku, new ArrayList<>());
-    }
+    private static class Offer {
 
-    public record Offer(int quantity, int price, char freeItem) {
+        private final char sku;
+        private final int quantity;
+        private final int price;
+        public Offer(char sku, int quantity, int price) {
+            this.sku = sku;
+            this.quantity = quantity;
+            this.price = price;
+        }
     }
 }
+

@@ -14,7 +14,7 @@ public class PricingFactory {
 
     private static final Map<Character, Integer> SKU_PRICES = new HashMap<>();
     private static final Map<Character, Discount> SKU_DISCOUNTS = new HashMap<>();
-    private static final Map<Character, List<SpecialOffer.Offer>> SKU_SPECIAL_OFFERS = new HashMap<>();
+    private static final Map<Integer, SpecialOffer> SKU_SPECIAL_OFFERS = new HashMap<>();
 
     static {
         SKU_PRICES.put('A', 50);
@@ -27,16 +27,24 @@ public class PricingFactory {
         SKU_DISCOUNTS.put('B', new Discount(2, 45));
 
         SpecialOffer specialOffer = new SpecialOffer();
-        specialOffer.addOffer('A', 3, 130,' ');
-        specialOffer.addOffer('A', 5, 200, ' ');
-        specialOffer.addOffer('B', 2, 45, ' ');
-        specialOffer.addOffer('E', 2, 0, 'B');
+        specialOffer.addOffer('A', 3, 130);
+        specialOffer.addOffer('A', 5, 200);
+        specialOffer.addOffer('B', 2, 45);
+        specialOffer.addOffer('E', 2, 0);
 
+
+        SKU_SPECIAL_OFFERS.put(1, specialOffer);
     }
 
     public PricingStrategy getStrategy(char sku) {
         Integer price = SKU_PRICES.get(sku);
         Discount discount = SKU_DISCOUNTS.get(sku);
+
+        SKU_SPECIAL_OFFERS.get('A');
+
+        for (SpecialOffer specialOffer : SKU_SPECIAL_OFFERS.values()) {
+
+        }
 
         if (discount != null) {
             return new DiscountedPricingStrategy(price, discount);
@@ -49,3 +57,4 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
+
