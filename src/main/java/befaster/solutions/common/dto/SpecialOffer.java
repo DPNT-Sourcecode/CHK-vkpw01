@@ -55,9 +55,6 @@ public class SpecialOffer {
 
         for (Offer offer : offers) {
             skus.add(offer.getSku());
-            if (offer.getFreeItemSku() != ' ') {
-                skus.add(offer.getFreeItemSku());
-            }
         }
         return skus;
     }
@@ -114,3 +111,4 @@ public class SpecialOffer {
     }
 
 }
+
