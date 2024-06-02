@@ -21,4 +21,14 @@ class CheckoutSolutionTest {
         assertEquals(-1, checkoutSolution.checkout(""));
     }
 
+    @Test
+    public void testCheckoutWithUniqueItems() {
+        assertEquals(50, checkoutSolution.checkout("A"));
+        assertEquals(30, checkoutSolution.checkout("B"));
+        assertEquals(20, checkoutSolution.checkout("C"));
+        assertEquals(15, checkoutSolution.checkout("D"));
+    }
+
+
+
 }

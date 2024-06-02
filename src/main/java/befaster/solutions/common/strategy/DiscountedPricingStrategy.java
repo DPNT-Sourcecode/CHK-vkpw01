@@ -15,6 +15,6 @@ public class DiscountedPricingStrategy implements PricingStrategy {
     public int calculatePrice(int count) {
         int roundsOfDiscount = count / discount.quantity();
         int remainingItems = count % discount.quantity();
-        return roundsOfDiscount * discount.price() * remainingItems * unitPrice;
+        return roundsOfDiscount * discount.price() + remainingItems * unitPrice;
     }
 }
