@@ -22,8 +22,9 @@ public class CheckoutSolution {
         for (char sku : skus.toCharArray()) {
             if(Character.isLetter(sku) && pricingFactory.isValidSku(sku)) {
                 countOfItems.put(sku, countOfItems.getOrDefault(sku, 0) + 1);
+            } else {
+                return -1;
             }
-            return -1;
         }
 
         int totalValue = 0;

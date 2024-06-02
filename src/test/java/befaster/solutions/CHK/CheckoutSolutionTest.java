@@ -35,10 +35,10 @@ class CheckoutSolutionTest {
     }
 
     @Test
-    public void testNotCapitalized() {
+    public void testIllegalCharacters() {
         assertEquals(0, checkoutSolution.checkout(""));
         assertEquals(-1, checkoutSolution.checkout("-"));
         assertEquals(-1, checkoutSolution.checkout("AaXa"));
+        assertEquals(50, checkoutSolution.checkout("A"));
     }
-
 }
