@@ -35,7 +35,7 @@ public class PricingFactory {
         SKU_SPECIAL_OFFERS.put('B', specialOfferB);
 
         SpecialOffer specialOfferE = new SpecialOffer();
-        specialOfferE.addOffer('E', 2, 30, 'B');
+        specialOfferE.addOffer('E', 2, 80, 'B');
         SKU_SPECIAL_OFFERS.put('E', specialOfferE);
     }
 
@@ -55,4 +55,3 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
-

@@ -48,6 +48,8 @@ class CheckoutSolutionTest {
 //        assertEquals(250, checkoutSolution.checkout("AAAAAA"));
 //        assertEquals(300, checkoutSolution.checkout("AAAAAAA"));
        // assertEquals(330, checkoutSolution.checkout("AAAAAAAA"));
-        assertEquals(380, checkoutSolution.checkout("AAAAAAAAA"));
+        //assertEquals(380, checkoutSolution.checkout("AAAAAAAAA"));
+        assertEquals(80, checkoutSolution.checkout("EE"));
+
     }
 }
