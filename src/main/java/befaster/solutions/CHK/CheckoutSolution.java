@@ -14,18 +14,18 @@ public class CheckoutSolution {
     }
 
     public Integer checkout(String skus) {
-        if(skus == null || skus.isEmpty()) {
+        if (skus == null || skus.isEmpty()) {
             return -1;
         }
 
         Map<Character, Integer> countOfItems = new HashMap<>();
-        for(char sku : skus.toCharArray()) {
-            countOfItems.put(sku, countOfItems.getOrDefault(sku, 0) + 1);
+        for (char sku : skus.toCharArray()) {
+            countOfItems.put(Character.toUpperCase(sku), countOfItems.getOrDefault(sku, 0) + 1);
         }
 
         int totalValue = 0;
 
-        for(Map.Entry<Character, Integer> entry : countOfItems.entrySet()) {
+        for (Map.Entry<Character, Integer> entry : countOfItems.entrySet()) {
             char sku = entry.getKey();
             int count = entry.getValue();
 
@@ -36,4 +36,3 @@ public class CheckoutSolution {
         return totalValue;
     }
 }
-

@@ -11,4 +11,3 @@ public class DefaultPricingStrategy implements PricingStrategy {
         return unitPrice * count;
     }
 }
-
