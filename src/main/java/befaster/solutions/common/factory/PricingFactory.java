@@ -33,4 +33,9 @@ public class PricingFactory {
             return new DefaultPricingStrategy(price != null ? price : 0);
         }
     }
+
+    public boolean isValidSku(char sku) {
+        return SKU_PRICES.containsKey(sku);
+    }
 }
+

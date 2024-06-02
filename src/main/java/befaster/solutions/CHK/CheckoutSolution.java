@@ -20,9 +20,10 @@ public class CheckoutSolution {
 
         Map<Character, Integer> countOfItems = new HashMap<>();
         for (char sku : skus.toCharArray()) {
-            if(Character.isLetter(sku)) {
+            if(Character.isLetter(sku) && pricingFactory.isValidSku(sku)) {
                 countOfItems.put(sku, countOfItems.getOrDefault(sku, 0) + 1);
             }
+            return -1;
         }
 
         int totalValue = 0;
@@ -38,4 +39,5 @@ public class CheckoutSolution {
         return totalValue;
     }
 }
+
 
