@@ -21,7 +21,8 @@ public class CheckoutSolution {
         Map<Character, Integer> countOfItems = new HashMap<>();
         for (char sku : skus.toCharArray()) {
             if(Character.isLetter(sku)) {
-                countOfItems.put(Character.toUpperCase(sku), countOfItems.getOrDefault(sku, 0) + 1);
+                char capitalizedSku = Character.toUpperCase(sku);
+                countOfItems.put(capitalizedSku, countOfItems.getOrDefault(capitalizedSku, 0) + 1);
             }
         }
 
