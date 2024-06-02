@@ -35,7 +35,12 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
                         totalPrice += remainingQuantity * regularPrice;
                     } else {
                         totalPrice += numFullSets * bestOffer.getPrice();
-                        totalPrice += remainingQuantity * regularPrice;
+                        SpecialOffer.Offer newOffer = specialOffer.getBestOfferWithSku(sku, remainingQuantity);
+                        if(newOffer != null) {
+                            totalPrice += newOffer.getPrice();
+                        } else {
+                            totalPrice += remainingQuantity * regularPrice;
+                        }
                     }
 
                 }
@@ -49,3 +54,4 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
         return totalPrice;
     }
 }
+
