@@ -18,6 +18,7 @@ public class PricingFactory {
         SKU_PRICES.put('B', 30);
         SKU_PRICES.put('C', 20);
         SKU_PRICES.put('D', 15);
+        SKU_PRICES.put('E', 40);
 
         SKU_DISCOUNTS.put('A', new Discount(3, 130));
         SKU_DISCOUNTS.put('B', new Discount(2, 45));
@@ -38,3 +39,4 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
+
