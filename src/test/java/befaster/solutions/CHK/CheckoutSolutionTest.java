@@ -44,7 +44,7 @@ class CheckoutSolutionTest {
 
     @Test
     public void testSpecialOffer() {
-        assertEquals(0, checkoutSolution.checkout("AAA"));
+        assertEquals(130, checkoutSolution.checkout("AAABEE"));
 
     }
 }
