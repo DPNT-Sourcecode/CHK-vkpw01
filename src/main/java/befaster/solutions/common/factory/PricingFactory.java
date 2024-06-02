@@ -35,7 +35,7 @@ public class PricingFactory {
         SKU_SPECIAL_OFFERS.put('B', specialOfferB);
 
         SpecialOffer specialOfferE = new SpecialOffer();
-        specialOfferE.addOffer('E', 2, 80, 'B');
+        specialOfferE.addOffer('E', 2, 80, 'B', 30);
         SKU_SPECIAL_OFFERS.put('E', specialOfferE);
     }
 
@@ -48,10 +48,14 @@ public class PricingFactory {
         } else {
             return new DefaultPricingStrategy(price);
         }
+    }
 
+    public Map<Character, Integer> getSKUPrices(char sku) {
+        return new HashMap<>(SKU_PRICES);
     }
 
     public boolean isValidSku(char sku) {
         return SKU_PRICES.containsKey(sku);
     }
 }
+

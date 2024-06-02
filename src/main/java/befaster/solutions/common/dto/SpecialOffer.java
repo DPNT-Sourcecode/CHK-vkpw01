@@ -14,8 +14,8 @@ public class SpecialOffer {
         offers.add(new Offer(sku, quantity, price));
     }
 
-    public void addOffer(char sku, int quantity, int price, char freeItemSku) {
-        offers.add(new Offer(sku, quantity, price, freeItemSku));
+    public void addOffer(char sku, int quantity, int price, char freeItemSku, int freeItemSkuPrice) {
+        offers.add(new Offer(sku, quantity, price, freeItemSku, freeItemSkuPrice));
     }
 
     public List<Offer> getOffersWithSku(char sku) {
@@ -32,7 +32,7 @@ public class SpecialOffer {
     public int getPriceForSku(char sku) {
         for (Offer offer : offers) {
             if (offer.getSku() == sku) {
-                return offer.getPrice();
+                return offer.getFreeItemSkuPrice();
             }
         }
 
@@ -86,16 +86,18 @@ public class SpecialOffer {
         private final int quantity;
         private final int price;
         private final char freeItemSku;
+        private final int freeItemSkuPrice;
 
-        public Offer(char sku, int quantity, int price, char freeItemSku) {
+        public Offer(char sku, int quantity, int price, char freeItemSku, int freeItemSkuPrice) {
             this.sku = sku;
             this.quantity = quantity;
             this.price = price;
             this.freeItemSku = freeItemSku;
+            this.freeItemSkuPrice = freeItemSkuPrice;
         }
 
         public Offer(char sku, int quantity, int price) {
-            this(sku, quantity, price, ' ');
+            this(sku, quantity, price, ' ', 0);
         }
 
         public int getQuantity() {
@@ -114,6 +116,11 @@ public class SpecialOffer {
             return freeItemSku;
         }
 
+        public int getFreeItemSkuPrice() {
+            return freeItemSkuPrice;
+        }
+
     }
 
 }
+
