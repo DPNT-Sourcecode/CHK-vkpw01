@@ -39,17 +39,23 @@ public class SpecialOffer {
         return 0;
     }
 
-    public Offer getBestOfferWithSku(char sku) {
+    public Offer getBestOfferWithSku(char sku, int quantity) {
 
-        List<Offer> offerWithSku = getOffersWithSku(sku);
+        List<SpecialOffer.Offer> offerWithSku = getOffersWithSku(sku);
 
         if (offerWithSku.isEmpty()) {
             return null;
         }
 
-        return offers.stream()
-                .min(Comparator.comparing(Offer::getPrice))
-                .orElse(null);
+        SpecialOffer.Offer bestOffer = null;
+
+        for (SpecialOffer.Offer offer : offerWithSku) {
+            if (quantity >= offer.getQuantity()) {
+                bestOffer = offer;
+            }
+        }
+
+        return bestOffer;
     }
 
     public Set<Character> getSKUs() {
