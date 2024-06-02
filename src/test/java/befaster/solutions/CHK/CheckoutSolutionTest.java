@@ -44,11 +44,12 @@ class CheckoutSolutionTest {
 
     @Test
     public void testSpecialOffer() {
-//        assertEquals(200, checkoutSolution.checkout("AAAAA"));
-//        assertEquals(250, checkoutSolution.checkout("AAAAAA"));
-//        assertEquals(300, checkoutSolution.checkout("AAAAAAA"));
-       // assertEquals(330, checkoutSolution.checkout("AAAAAAAA"));
-        //assertEquals(380, checkoutSolution.checkout("AAAAAAAAA"));
+        assertEquals(180, checkoutSolution.checkout("AAAA"));
+        assertEquals(200, checkoutSolution.checkout("AAAAA"));
+        assertEquals(250, checkoutSolution.checkout("AAAAAA"));
+        assertEquals(300, checkoutSolution.checkout("AAAAAAA"));
+        assertEquals(330, checkoutSolution.checkout("AAAAAAAA"));
+        assertEquals(380, checkoutSolution.checkout("AAAAAAAAA"));
         assertEquals(80, checkoutSolution.checkout("EE"));
 
     }

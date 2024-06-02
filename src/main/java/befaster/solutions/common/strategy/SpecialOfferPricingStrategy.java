@@ -39,8 +39,6 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
                         if(newOffer != null) {
                             remainingQuantity -= newOffer.getQuantity();
                             totalPrice += newOffer.getPrice();
-                        } else {
-                            totalPrice += remainingQuantity * regularPrice;
                         }
                         totalPrice += remainingQuantity * regularPrice;
                     }
@@ -56,3 +54,4 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
         return totalPrice;
     }
 }
+
