@@ -3,7 +3,6 @@ package befaster.solutions.common.factory;
 import befaster.solutions.common.dto.Discount;
 import befaster.solutions.common.dto.SpecialOffer;
 import befaster.solutions.common.strategy.DefaultPricingStrategy;
-import befaster.solutions.common.strategy.DiscountedPricingStrategy;
 import befaster.solutions.common.strategy.PricingStrategy;
 import befaster.solutions.common.strategy.SpecialOfferPricingStrategy;
 
@@ -56,3 +55,4 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
+
