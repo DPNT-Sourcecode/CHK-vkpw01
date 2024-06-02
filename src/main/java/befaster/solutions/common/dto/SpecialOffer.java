@@ -1,8 +1,6 @@
 package befaster.solutions.common.dto;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class SpecialOffer {
 
@@ -16,7 +14,7 @@ public class SpecialOffer {
         offers.add(new Offer(sku, quantity, price));
     }
 
-    public Offer getBestOffer(char sku) {
+    public List<Offer> getOffersWithSku(char sku) {
         List<Offer> result = new ArrayList<>();
 
         for (Offer offer : offers) {
@@ -24,34 +22,86 @@ public class SpecialOffer {
                 result.add(offer);
             }
         }
-        return compareBestOffer(result);
+        return result;
     }
 
-    private Offer compareBestOffer(List<Offer> offers) {
+    public int getPriceForSku(char sku) {
+        for (Offer offer : offers) {
+            if (offer.getSku() == sku) {
+                return offer.getPrice();
+            }
+        }
+
+        return 0;
+    }
+
+    public Offer getBestOfferWithSku(char sku) {
+
+        List<Offer> offerWithSku = getOffersWithSku(sku);
+
+        if (offerWithSku.isEmpty()) {
+            return null;
+        }
 
         return offers.stream()
                 .min(Comparator.comparing(Offer::getPrice))
                 .orElse(null);
     }
 
-    private static class Offer {
+    public Set<Character> getSKUs() {
+
+        Set<Character> skus = new HashSet<>();
+
+        for (Offer offer : offers) {
+            skus.add(offer.getSku());
+            if (offer.getFreeItemSku() != ' ') {
+                skus.add(offer.getFreeItemSku());
+            }
+        }
+        return skus;
+    }
+
+    public boolean containsSku(char sku) {
+        for (Offer offer : offers) {
+            if (offer.getSku() == sku || offer.getFreeItemSku() == sku) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static class Offer {
 
         private final char sku;
         private final int quantity;
         private final int price;
-        public Offer(char sku, int quantity, int price) {
+        private final char freeItemSku;
+
+        public Offer(char sku, int quantity, int price, char freeItemSku) {
             this.sku = sku;
             this.quantity = quantity;
             this.price = price;
+            this.freeItemSku = freeItemSku;
         }
 
+        public Offer(char sku, int quantity, int price) {
+            this(sku, quantity, price, ' ');
+        }
 
         public int getQuantity() {
             return quantity;
         }
 
+        public Character getSku() {
+            return sku;
+        }
+
         public int getPrice() {
             return price;
+        }
+
+        public Character getFreeItemSku() {
+            return freeItemSku;
         }
 
     }

@@ -2,15 +2,49 @@ package befaster.solutions.common.strategy;
 
 import befaster.solutions.common.dto.SpecialOffer;
 
-import java.util.Map;
-
 public class SpecialOfferPricingStrategy implements PricingStrategy {
-    private final int unitPrice;
+
+    private final SpecialOffer specialOffer;
+    private final int regularPrice;
+
+    public SpecialOfferPricingStrategy(SpecialOffer specialOffer, int regularPrice) {
+        this.specialOffer = specialOffer;
+        this.regularPrice = regularPrice;
+    }
 
     @Override
     public int calculatePrice(int count) {
-
         int totalPrice = 0;
+
+        for(char sku : specialOffer.getSKUs()) {
+            if(specialOffer.containsSku(sku)) {
+                SpecialOffer.Offer bestOffer = specialOffer.getBestOfferWithSku(sku);
+                if (bestOffer != null) {
+
+                    int numFullSets = count / bestOffer.getQuantity();
+                    int remainingQuantity = count % bestOffer.getQuantity();
+                    int numFreeItems = numFullSets * bestOffer.getQuantity();
+
+                    char freeItemSku = bestOffer.getFreeItemSku();
+
+                    if (freeItemSku != ' ') {
+                        int numPackages = numFreeItems / bestOffer.getQuantity();
+                        int remainingItems = numFreeItems % bestOffer.getQuantity();
+                        totalPrice += numPackages * bestOffer.getPrice();
+                        totalPrice += remainingItems * specialOffer.getPriceForSku(freeItemSku);
+                        totalPrice += remainingQuantity * regularPrice;
+                    } else {
+                        totalPrice += numFullSets * bestOffer.getPrice();
+                        totalPrice += remainingQuantity * regularPrice;
+                    }
+
+                }
+            }
+        }
+
+        if(totalPrice == 0) {
+            totalPrice = count * regularPrice;
+        }
 
         return totalPrice;
     }

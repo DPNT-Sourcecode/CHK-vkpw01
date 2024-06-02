@@ -14,7 +14,7 @@ public class PricingFactory {
 
     private static final Map<Character, Integer> SKU_PRICES = new HashMap<>();
     private static final Map<Character, Discount> SKU_DISCOUNTS = new HashMap<>();
-    private static final Map<Integer, SpecialOffer> SKU_SPECIAL_OFFERS = new HashMap<>();
+    private static final Map<Character, SpecialOffer> SKU_SPECIAL_OFFERS = new HashMap<>();
 
     static {
         SKU_PRICES.put('A', 50);
@@ -26,29 +26,30 @@ public class PricingFactory {
         SKU_DISCOUNTS.put('A', new Discount(3, 130));
         SKU_DISCOUNTS.put('B', new Discount(2, 45));
 
-        SpecialOffer specialOffer = new SpecialOffer();
-        specialOffer.addOffer('A', 3, 130);
-        specialOffer.addOffer('A', 5, 200);
-        specialOffer.addOffer('B', 2, 45);
-        specialOffer.addOffer('E', 2, 0);
+        SpecialOffer specialOfferA = new SpecialOffer();
+        specialOfferA.addOffer('A', 3, 130);
+        specialOfferA.addOffer('A', 5, 200);
+        SKU_SPECIAL_OFFERS.put('A', specialOfferA);
 
+        SpecialOffer specialOfferB = new SpecialOffer();
+        specialOfferB.addOffer('B', 2, 45);
+        SKU_SPECIAL_OFFERS.put('B', specialOfferB);
 
-        SKU_SPECIAL_OFFERS.put(1, specialOffer);
+        SpecialOffer specialOfferE = new SpecialOffer();
+        specialOfferE.addOffer('E', 2, 0);
+        SKU_SPECIAL_OFFERS.put('E', specialOfferE);
     }
 
     public PricingStrategy getStrategy(char sku) {
         Integer price = SKU_PRICES.get(sku);
-        SpecialOffer specialOffer = null;
+        SpecialOffer specialOffer = SKU_SPECIAL_OFFERS.get(sku);
 
-        for (SpecialOffer offer : SKU_SPECIAL_OFFERS.values()) {
-            offer.getBestOffer(sku);
-        }
-
-        if (specialOffer != null) {
-            return new SpecialOfferPricingStrategy(price, discount);
+        if(specialOffer != null) {
+            return new SpecialOfferPricingStrategy(specialOffer,  price);
         } else {
-            return new DefaultPricingStrategy(price != null ? price : 0);
+            return new DefaultPricingStrategy(price);
         }
+
     }
 
     public boolean isValidSku(char sku) {
