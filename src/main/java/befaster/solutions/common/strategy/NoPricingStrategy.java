@@ -1,13 +1,8 @@
 package befaster.solutions.common.strategy;
 
-public class DefaultPricingStrategy implements PricingStrategy {
-    private final int unitPrice;
-
-    public DefaultPricingStrategy(int unitPrice) {
-        this.unitPrice = unitPrice;
-    }
+public class NoPricingStrategy implements PricingStrategy {
     @Override
     public int calculatePrice(int count) {
-        return unitPrice * count;
+        return 0;
     }
 }

@@ -3,6 +3,7 @@ package befaster.solutions.common.factory;
 import befaster.solutions.common.dto.Discount;
 import befaster.solutions.common.strategy.DefaultPricingStrategy;
 import befaster.solutions.common.strategy.DiscountedPricingStrategy;
+import befaster.solutions.common.strategy.NoPricingStrategy;
 import befaster.solutions.common.strategy.PricingStrategy;
 
 import java.util.HashMap;
@@ -29,8 +30,10 @@ public class PricingFactory {
 
         if (discount != null) {
             return new DiscountedPricingStrategy(price, discount);
-        } else {
+        } else if (price != null) {
             return new DefaultPricingStrategy(price);
+        } else {
+            return new NoPricingStrategy();
         }
     }
 }
