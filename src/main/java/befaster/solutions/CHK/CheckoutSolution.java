@@ -1,9 +1,18 @@
 package befaster.solutions.CHK;
 
+import befaster.solutions.common.factory.PricingFactory;
+import befaster.solutions.common.strategy.PricingStrategy;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class CheckoutSolution {
+    private final PricingFactory pricingFactory;
+
+    public CheckoutSolution(PricingFactory pricingFactory) {
+        this.pricingFactory = pricingFactory;
+    }
+
     public Integer checkout(String skus) {
         if(skus == null || skus.isEmpty()) {
             return -1;
@@ -20,7 +29,8 @@ public class CheckoutSolution {
             char sku = entry.getKey();
             int count = entry.getValue();
 
-
+            PricingStrategy pricingStrategy = pricingFactory.getStrategy(sku);
+            totalValue += pricingStrategy.calculatePrice(count);
         }
 
         return totalValue;

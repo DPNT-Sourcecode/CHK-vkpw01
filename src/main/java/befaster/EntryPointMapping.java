@@ -7,6 +7,7 @@ import befaster.solutions.FIZ.FizzBuzzSolution;
 import befaster.solutions.HLO.HelloSolution;
 import befaster.solutions.IRNG.IntRangeSolution;
 import befaster.solutions.SUM.SumSolution;
+import befaster.solutions.common.factory.PricingFactory;
 import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
@@ -31,13 +32,16 @@ class EntryPointMapping {
     private final CheckoutSolution checkoutSolution;
     private final CheckliteSolution checkliteSolution;
 
+
+
     EntryPointMapping() {
+        PricingFactory pricingFactory = new PricingFactory();
         sumSolution = new SumSolution();
         helloSolution = new HelloSolution();
         arraySumSolution = new ArraySumSolution();
         intRangeSolution = new IntRangeSolution();
         fizzBuzzSolution = new FizzBuzzSolution();
-        checkoutSolution = new CheckoutSolution();
+        checkoutSolution = new CheckoutSolution(pricingFactory);
         checkliteSolution = new CheckliteSolution();
     }
 

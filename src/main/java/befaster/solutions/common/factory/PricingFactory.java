@@ -1,6 +1,9 @@
 package befaster.solutions.common.factory;
 
 import befaster.solutions.common.dto.Discount;
+import befaster.solutions.common.strategy.DefaultPricingStrategy;
+import befaster.solutions.common.strategy.DiscountedPricingStrategy;
+import befaster.solutions.common.strategy.PricingStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,4 +23,14 @@ public class PricingFactory {
         SKU_DISCOUNTS.put('B', new Discount(2, 130));
     }
 
+    public PricingStrategy getStrategy(char sku) {
+        Integer price = SKU_PRICES.get(sku);
+        Discount discount = SKU_DISCOUNTS.get(sku);
+
+        if (discount != null) {
+            return new DiscountedPricingStrategy(price, discount);
+        } else {
+            return new DefaultPricingStrategy(price);
+        }
+    }
 }

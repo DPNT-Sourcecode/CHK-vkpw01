@@ -1,13 +1,20 @@
 package befaster.solutions.common.strategy;
 
-public class DefaultPricingStrategy implements PricingStrategy {
-    private final int unitPrice;
+import befaster.solutions.common.dto.Discount;
 
-    public DefaultPricingStrategy(int unitPrice) {
+public class DiscountedPricingStrategy implements PricingStrategy {
+    private final int unitPrice;
+    private final Discount discount;
+
+    public DiscountedPricingStrategy(int unitPrice, Discount discount) {
         this.unitPrice = unitPrice;
+        this.discount = discount;
     }
+
     @Override
     public int calculatePrice(int count) {
-        return unitPrice * count;
+        int roundsOfDiscount = count / discount.quantity();
+        int remainingItems = count % discount.quantity();
+        return roundsOfDiscount * discount.price() * remainingItems * unitPrice;
     }
 }
