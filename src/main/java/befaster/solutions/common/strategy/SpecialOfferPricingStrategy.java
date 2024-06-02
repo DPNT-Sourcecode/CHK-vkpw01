@@ -20,7 +20,6 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
             if(specialOffer.containsSku(sku)) {
                 SpecialOffer.Offer bestOffer = specialOffer.getBestOfferWithSku(sku, count);
                 if (bestOffer != null) {
-
                     int numFullSets = count / bestOffer.getQuantity();
                     int remainingQuantity = count % bestOffer.getQuantity();
                     int numFreeItems = numFullSets * bestOffer.getQuantity();
@@ -29,9 +28,8 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
 
                     if (freeItemSku != ' ') {
                         int numPackages = numFreeItems / bestOffer.getQuantity();
-                        int remainingItems = numFreeItems % bestOffer.getQuantity();
                         totalPrice += numPackages * bestOffer.getPrice();
-                        totalPrice -= bestOffer.getFreeItemSkuPrice();
+                        totalPrice -= numFreeItems * bestOffer.getFreeItemSkuPrice();
                     } else {
                         totalPrice += numFullSets * bestOffer.getPrice();
                         SpecialOffer.Offer newOffer = specialOffer.getBestOfferWithSku(sku, remainingQuantity);
@@ -41,7 +39,8 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
                         }
                         totalPrice += remainingQuantity * regularPrice;
                     }
-
+                } else {
+                    totalPrice += count * regularPrice;
                 }
             }
         }
@@ -53,5 +52,6 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
         return totalPrice;
     }
 }
+
 
 
