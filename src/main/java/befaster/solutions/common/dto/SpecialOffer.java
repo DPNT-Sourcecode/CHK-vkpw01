@@ -14,6 +14,10 @@ public class SpecialOffer {
         offers.add(new Offer(sku, quantity, price));
     }
 
+    public void addOffer(char sku, int quantity, int price, char freeItemSku) {
+        offers.add(new Offer(sku, quantity, price, freeItemSku));
+    }
+
     public List<Offer> getOffersWithSku(char sku) {
         List<Offer> result = new ArrayList<>();
 
@@ -107,3 +111,4 @@ public class SpecialOffer {
     }
 
 }
+
