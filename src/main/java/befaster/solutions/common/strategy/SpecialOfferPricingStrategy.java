@@ -23,11 +23,10 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
                     int numFullSets = count / bestOffer.getQuantity();
                     int remainingQuantity = count % bestOffer.getQuantity();
                     int numFreeItems = numFullSets * bestOffer.getQuantity();
-                    
+
                     if (bestOffer.getFreeItemSku() != ' ') {
                         int numPackages = numFreeItems / bestOffer.getQuantity();
                         totalPrice += numPackages * bestOffer.getPrice();
-                        totalPrice -= numFreeItems * bestOffer.getFreeItemSkuPrice();
                     } else {
                         totalPrice += numFullSets * bestOffer.getPrice();
                         SpecialOffer.Offer newOffer = specialOffer.getBestOfferWithSku(sku, remainingQuantity);
@@ -50,4 +49,5 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
         return totalPrice;
     }
 }
+
 
