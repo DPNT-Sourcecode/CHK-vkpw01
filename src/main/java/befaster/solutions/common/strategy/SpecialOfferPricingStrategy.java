@@ -21,4 +21,3 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
         return totalPrice;
     }
 }
-

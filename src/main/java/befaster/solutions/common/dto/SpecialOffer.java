@@ -22,4 +22,3 @@ public record SpecialOffer(Map<Character, List<Offer>> offers) {
     public record Offer(int quantity, int price, char freeItem) {
     }
 }
-
