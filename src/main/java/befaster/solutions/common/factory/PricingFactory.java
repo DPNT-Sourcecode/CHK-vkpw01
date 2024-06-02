@@ -20,7 +20,7 @@ public class PricingFactory {
         SKU_PRICES.put('D', 15);
 
         SKU_DISCOUNTS.put('A', new Discount(3, 130));
-        SKU_DISCOUNTS.put('B', new Discount(2, 130));
+        SKU_DISCOUNTS.put('B', new Discount(2, 45));
     }
 
     public PricingStrategy getStrategy(char sku) {
@@ -38,4 +38,3 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
-
