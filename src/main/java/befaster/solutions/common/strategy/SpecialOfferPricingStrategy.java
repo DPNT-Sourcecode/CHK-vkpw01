@@ -37,10 +37,12 @@ public class SpecialOfferPricingStrategy implements PricingStrategy {
                         totalPrice += numFullSets * bestOffer.getPrice();
                         SpecialOffer.Offer newOffer = specialOffer.getBestOfferWithSku(sku, remainingQuantity);
                         if(newOffer != null) {
+                            remainingQuantity -= newOffer.getQuantity();
                             totalPrice += newOffer.getPrice();
                         } else {
                             totalPrice += remainingQuantity * regularPrice;
                         }
+                        totalPrice += remainingQuantity * regularPrice;
                     }
 
                 }
