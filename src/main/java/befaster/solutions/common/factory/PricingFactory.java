@@ -7,13 +7,14 @@ import befaster.solutions.common.strategy.DiscountedPricingStrategy;
 import befaster.solutions.common.strategy.PricingStrategy;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PricingFactory {
 
     private static final Map<Character, Integer> SKU_PRICES = new HashMap<>();
     private static final Map<Character, Discount> SKU_DISCOUNTS = new HashMap<>();
-    private static final Map<Character, SpecialOffer> SKU_SPECIAL_OFFERS = new HashMap<>();
+    private static final Map<Character, List<SpecialOffer.Offer>> SKU_SPECIAL_OFFERS = new HashMap<>();
 
     static {
         SKU_PRICES.put('A', 50);
@@ -25,7 +26,12 @@ public class PricingFactory {
         SKU_DISCOUNTS.put('A', new Discount(3, 130));
         SKU_DISCOUNTS.put('B', new Discount(2, 45));
 
-        SKU_SPECIAL_OFFERS.put('A', new SpecialOffer(3, 130, 0, ));
+        SpecialOffer specialOffer = new SpecialOffer();
+        specialOffer.addOffer('A', 3, 130,' ');
+        specialOffer.addOffer('A', 5, 200, ' ');
+        specialOffer.addOffer('B', 2, 45, ' ');
+        specialOffer.addOffer('E', 2, 0, 'B');
+
     }
 
     public PricingStrategy getStrategy(char sku) {
@@ -43,3 +49,4 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
+

@@ -1,20 +1,24 @@
 package befaster.solutions.common.strategy;
 
-import befaster.solutions.common.dto.Discount;
+import befaster.solutions.common.dto.SpecialOffer;
 
-public class DiscountedPricingStrategy implements PricingStrategy {
+import java.util.Map;
+
+public class SpecialOfferPricingStrategy implements PricingStrategy {
     private final int unitPrice;
-    private final Discount discount;
+    private final Map<Character, SpecialOffer> specialOffers;
 
-    public DiscountedPricingStrategy(int unitPrice, Discount discount) {
+    public SpecialOfferPricingStrategy(int unitPrice, Map<Character, SpecialOffer> specialOffers) {
         this.unitPrice = unitPrice;
-        this.discount = discount;
+        this.specialOffers = specialOffers;
     }
 
     @Override
     public int calculatePrice(int count) {
-        int roundsOfDiscount = count / discount.quantity();
-        int remainingItems = count % discount.quantity();
-        return roundsOfDiscount * discount.price() + remainingItems * unitPrice;
+
+        int totalPrice = 0;
+
+        return totalPrice;
     }
 }
+
