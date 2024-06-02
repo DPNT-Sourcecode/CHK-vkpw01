@@ -1,6 +1,7 @@
 package befaster.solutions.common.dto;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class SpecialOffer {
@@ -15,13 +16,22 @@ public class SpecialOffer {
         offers.add(new Offer(sku, quantity, price));
     }
 
-    public boolean containsOfferWithSku(char sku) {
+    public Offer getBestOffer(char sku) {
+        List<Offer> result = new ArrayList<>();
+
         for (Offer offer : offers) {
             if (offer.sku == sku) {
-                return true;
+                result.add(offer);
             }
         }
-        return false;
+        return compareBestOffer(result);
+    }
+
+    private Offer compareBestOffer(List<Offer> offers) {
+
+        return offers.stream()
+                .min(Comparator.comparing(Offer::getPrice))
+                .orElse(null);
     }
 
     private static class Offer {
@@ -34,7 +44,19 @@ public class SpecialOffer {
             this.quantity = quantity;
             this.price = price;
         }
+
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public int getPrice() {
+            return price;
+        }
+
     }
+
 }
+
 
 

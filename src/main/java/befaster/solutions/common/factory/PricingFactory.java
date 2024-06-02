@@ -5,9 +5,9 @@ import befaster.solutions.common.dto.SpecialOffer;
 import befaster.solutions.common.strategy.DefaultPricingStrategy;
 import befaster.solutions.common.strategy.DiscountedPricingStrategy;
 import befaster.solutions.common.strategy.PricingStrategy;
+import befaster.solutions.common.strategy.SpecialOfferPricingStrategy;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PricingFactory {
@@ -38,19 +38,14 @@ public class PricingFactory {
 
     public PricingStrategy getStrategy(char sku) {
         Integer price = SKU_PRICES.get(sku);
-        Discount discount = SKU_DISCOUNTS.get(sku);
+        SpecialOffer specialOffer = null;
 
-        SKU_SPECIAL_OFFERS.get('A');
-
-        for (SpecialOffer specialOffer : SKU_SPECIAL_OFFERS.values()) {
-            if(specialOffer.containsOfferWithSku(sku)) {
-
-            }
-
+        for (SpecialOffer offer : SKU_SPECIAL_OFFERS.values()) {
+            offer.getBestOffer(sku);
         }
 
-        if (discount != null) {
-            return new DiscountedPricingStrategy(price, discount);
+        if (specialOffer != null) {
+            return new SpecialOfferPricingStrategy(price, discount);
         } else {
             return new DefaultPricingStrategy(price != null ? price : 0);
         }
@@ -60,5 +55,6 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
+
 
 
