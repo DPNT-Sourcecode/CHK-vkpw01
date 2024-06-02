@@ -15,14 +15,13 @@ public class CheckoutSolution {
 
     public Integer checkout(String skus) {
         if (skus == null || skus.isEmpty()) {
-            return -1;
+            return 0;
         }
 
         Map<Character, Integer> countOfItems = new HashMap<>();
         for (char sku : skus.toCharArray()) {
             if(Character.isLetter(sku)) {
-                char capitalizedSku = Character.toUpperCase(sku);
-                countOfItems.put(capitalizedSku, countOfItems.getOrDefault(capitalizedSku, 0) + 1);
+                countOfItems.put(sku, countOfItems.getOrDefault(sku, 0) + 1);
             }
         }
 
@@ -39,3 +38,4 @@ public class CheckoutSolution {
         return totalValue;
     }
 }
+
