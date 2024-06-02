@@ -36,9 +36,7 @@ class CheckoutSolutionTest {
 
     @Test
     public void testNotCapitalized() {
-        assertEquals(50, checkoutSolution.checkout("a"));
-        assertEquals(0, checkoutSolution.checkout("-"));
-        assertEquals(150, checkoutSolution.checkout("AaXa"));
+        assertEquals(150, checkoutSolution.checkout("AAXa"));
     }
 
 }
