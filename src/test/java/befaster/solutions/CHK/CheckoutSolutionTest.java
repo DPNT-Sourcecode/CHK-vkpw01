@@ -29,6 +29,9 @@ class CheckoutSolutionTest {
         assertEquals(15, checkoutSolution.checkout("D"));
     }
 
-
+    @Test
+    public void testCheckoutWithDiscounts() {
+        assertEquals(130, checkoutSolution.checkout("AAA"));
+    }
 
 }
