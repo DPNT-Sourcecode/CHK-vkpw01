@@ -20,7 +20,9 @@ public class CheckoutSolution {
 
         Map<Character, Integer> countOfItems = new HashMap<>();
         for (char sku : skus.toCharArray()) {
-            countOfItems.put(Character.toUpperCase(sku), countOfItems.getOrDefault(sku, 0) + 1);
+            if(Character.isLetter(sku)) {
+                countOfItems.put(Character.toUpperCase(sku), countOfItems.getOrDefault(sku, 0) + 1);
+            }
         }
 
         int totalValue = 0;
