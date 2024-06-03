@@ -25,7 +25,7 @@ public class PricingFactory {
         SKU_OFFERS.put('B', new Offer[]{new Offer(2,45)});
 
         SKU_PROMOTIONS.put('E', new Promotion(2,'B', 1));
-        SKU_PROMOTIONS.put('F', new Promotion(2,'F', 1));
+        SKU_PROMOTIONS.put('F', new Promotion(3,'F', 1));
     }
 
     public boolean isValidSku(char sku) {

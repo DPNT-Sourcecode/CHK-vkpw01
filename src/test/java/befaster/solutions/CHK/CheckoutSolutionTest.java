@@ -61,7 +61,7 @@ class CheckoutSolutionTest {
     public void testMultiPricing() {
         assertEquals(20, checkoutSolution.checkout("FF"));
         assertEquals(30, checkoutSolution.checkout("FFFF"));
-        assertEquals(40, checkoutSolution.checkout("FF"));
+        assertEquals(40, checkoutSolution.checkout("FFFFFF"));
 
     }
 }
