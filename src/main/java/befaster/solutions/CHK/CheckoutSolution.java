@@ -73,11 +73,13 @@ public class CheckoutSolution {
         int remainingCount = count;
         int selectedItem = -1;
 
-        for (int i = 0; i < offers.length; i++) {
-            Offer offer = offers[i];
-            if(remainingCount >= offer.quantity() && selectedItem == -1
-                    || offer.quantity() > offers[selectedItem].quantity()) {
-                selectedItem = i;
+        if (offers.length > 0) {
+            for (int i = 0; i < offers.length; i++) {
+                Offer offer = offers[i];
+                if (remainingCount >= offer.quantity() && selectedItem == -1
+                        || offer.quantity() > offers[selectedItem].quantity()) {
+                    selectedItem = i;
+                }
             }
         }
 
@@ -91,4 +93,5 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
