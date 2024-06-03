@@ -4,6 +4,7 @@ import befaster.solutions.common.dto.Offer;
 import befaster.solutions.common.dto.Promotion;
 import befaster.solutions.common.factory.PricingFactory;
 
+import java.awt.desktop.UserSessionEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -88,15 +89,23 @@ public class CheckoutSolution {
             }
         }
 
-        if (selectedItem != -1) {
+        if (selectedItem == 0 && remainingCount >= offers[selectedItem].quantity()) {
             Offer selectedOffer = offers[selectedItem];
             total = (remainingCount / selectedOffer.quantity()) * selectedOffer.offerPrice();
             remainingCount %= selectedOffer.quantity();
+
+            if(offers.length > 1 && remainingCount >= offers[1].quantity()) {
+                selectedOffer = offers[1];
+                total += (remainingCount / selectedOffer.quantity() * selectedOffer.offerPrice());
+                remainingCount %= selectedOffer.quantity();
+            }
+
         }
 
         total += remainingCount * price;
         return total;
     }
 }
+
 
 
