@@ -38,6 +38,9 @@ class CheckoutSolutionTest {
     @Test
     public void testIllegalCharacters() {
         assertEquals(0, checkoutSolution.checkout(""));
+        assertEquals(-1, checkoutSolution.checkout("-"));
+        assertEquals(-1, checkoutSolution.checkout("a"));
+        assertEquals(-1, checkoutSolution.checkout("AaXa"));
         assertEquals(50, checkoutSolution.checkout("A"));
     }
 
@@ -65,5 +68,6 @@ class CheckoutSolutionTest {
         assertEquals(100, checkoutSolution.checkout("HHHHHHHHHHHH"));
     }
 }
+
 
 
