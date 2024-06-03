@@ -25,7 +25,7 @@ public class PricingFactory {
         SKU_PRICES.put('H', 10);
         SKU_PRICES.put('I', 35);
         SKU_PRICES.put('J', 60);
-        SKU_PRICES.put('K', 80);
+        SKU_PRICES.put('K', 70);
         SKU_PRICES.put('L', 90);
         SKU_PRICES.put('M', 15);
         SKU_PRICES.put('N', 40);
@@ -33,14 +33,14 @@ public class PricingFactory {
         SKU_PRICES.put('P', 50);
         SKU_PRICES.put('Q', 30);
         SKU_PRICES.put('R', 50);
-        SKU_PRICES.put('S', 30);
+        SKU_PRICES.put('S', 20);
         SKU_PRICES.put('T', 20);
         SKU_PRICES.put('U', 40);
         SKU_PRICES.put('V', 50);
         SKU_PRICES.put('W', 20);
-        SKU_PRICES.put('X', 90);
-        SKU_PRICES.put('Y', 10);
-        SKU_PRICES.put('Z', 50);
+        SKU_PRICES.put('X', 17);
+        SKU_PRICES.put('Y', 20);
+        SKU_PRICES.put('Z', 21);
 
         SKU_OFFERS.put('A', new Offer[]{new Offer(3, 130), new Offer(5,200)});
         SKU_OFFERS.put('B', new Offer[]{new Offer(2,45)});
@@ -68,4 +68,5 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
+
 
