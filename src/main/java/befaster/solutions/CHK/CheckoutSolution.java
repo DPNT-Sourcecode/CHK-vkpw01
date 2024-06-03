@@ -4,7 +4,6 @@ import befaster.solutions.common.dto.Offer;
 import befaster.solutions.common.dto.Promotion;
 import befaster.solutions.common.factory.PricingFactory;
 
-import java.awt.desktop.UserSessionEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -106,3 +105,4 @@ public class CheckoutSolution {
         return total;
     }
 }
+
