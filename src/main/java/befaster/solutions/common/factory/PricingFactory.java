@@ -41,7 +41,7 @@ public class PricingFactory {
         SKU_PRICES.put('Y', 10);
         SKU_PRICES.put('Z', 50);
 
-        SKU_OFFERS.put('A', new Offer[]{new Offer(5,200), new Offer(3, 130)});
+        SKU_OFFERS.put('A', new Offer[]{new Offer(3, 130), new Offer(5,200)});
         SKU_OFFERS.put('B', new Offer[]{new Offer(2,45)});
         SKU_OFFERS.put('H', new Offer[]{new Offer(5,45), new Offer(10, 80)});
         SKU_OFFERS.put('K', new Offer[]{new Offer(2,150)});
@@ -61,3 +61,4 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
+

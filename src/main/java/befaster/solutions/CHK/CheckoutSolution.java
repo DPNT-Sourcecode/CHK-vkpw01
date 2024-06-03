@@ -89,13 +89,13 @@ public class CheckoutSolution {
             }
         }
 
-        if (selectedItem == 0 && remainingCount >= offers[selectedItem].quantity()) {
+        if (selectedItem != -1 && remainingCount >= offers[selectedItem].quantity()) {
             Offer selectedOffer = offers[selectedItem];
             total = (remainingCount / selectedOffer.quantity()) * selectedOffer.offerPrice();
             remainingCount %= selectedOffer.quantity();
 
-            if(offers.length > 1 && remainingCount >= offers[1].quantity()) {
-                selectedOffer = offers[1];
+            if(offers.length > 1 && remainingCount >= offers[0].quantity()) {
+                selectedOffer = offers[0];
                 total += (remainingCount / selectedOffer.quantity() * selectedOffer.offerPrice());
                 remainingCount %= selectedOffer.quantity();
             }
@@ -106,6 +106,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 

@@ -46,26 +46,26 @@ class CheckoutSolutionTest {
 
     @Test
     public void testSpecialOffer() {
-//        assertEquals(180, checkoutSolution.checkout("AAAA"));
-//        assertEquals(200, checkoutSolution.checkout("AAAAA"));
-//        assertEquals(250, checkoutSolution.checkout("AAAAAA"));
-//        assertEquals(300, checkoutSolution.checkout("AAAAAAA"));
+        assertEquals(180, checkoutSolution.checkout("AAAA"));
+        assertEquals(200, checkoutSolution.checkout("AAAAA"));
+        assertEquals(250, checkoutSolution.checkout("AAAAAA"));
+        assertEquals(300, checkoutSolution.checkout("AAAAAAA"));
         assertEquals(330, checkoutSolution.checkout("AAAAAAAA"));
         assertEquals(380, checkoutSolution.checkout("AAAAAAAAA"));
-//        assertEquals(80, checkoutSolution.checkout("EE"));
-//        assertEquals(80, checkoutSolution.checkout("EEB"));
-//        assertEquals(120, checkoutSolution.checkout("EEEB"));
-//        assertEquals(160, checkoutSolution.checkout("EEEEBB"));
+        assertEquals(80, checkoutSolution.checkout("EE"));
+        assertEquals(80, checkoutSolution.checkout("EEB"));
+        assertEquals(120, checkoutSolution.checkout("EEEB"));
+        assertEquals(160, checkoutSolution.checkout("EEEEBB"));
     }
 
     @Test
     public void testMultiPricing() {
-//        assertEquals(20, checkoutSolution.checkout("FF"));
-//        assertEquals(30, checkoutSolution.checkout("FFFF"));
-//        assertEquals(40, checkoutSolution.checkout("FFFFFF"));
-//        assertEquals(80, checkoutSolution.checkout("HHHHHHHHHH"));
-//        assertEquals(90, checkoutSolution.checkout("HHHHHHHHHHH"));
-//        assertEquals(100, checkoutSolution.checkout("HHHHHHHHHHHH"));
+        assertEquals(20, checkoutSolution.checkout("FF"));
+        assertEquals(30, checkoutSolution.checkout("FFFF"));
+        assertEquals(40, checkoutSolution.checkout("FFFFFF"));
+        assertEquals(80, checkoutSolution.checkout("HHHHHHHHHH"));
+        assertEquals(90, checkoutSolution.checkout("HHHHHHHHHHH"));
+        assertEquals(100, checkoutSolution.checkout("HHHHHHHHHHHH"));
         assertEquals(125, checkoutSolution.checkout("HHHHHHHHHHHHHHH"));
 
     }
