@@ -80,4 +80,3 @@ public class CheckoutSolution {
         return total + count * price;
     }
 }
-
