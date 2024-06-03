@@ -44,7 +44,7 @@ public class PricingFactory {
         SpecialOffer specialOffer = SKU_SPECIAL_OFFERS.get(sku);
 
         if(specialOffer != null) {
-            return new SpecialOfferPricingStrategy(specialOffer,  price);
+            return new SpecialOfferPricingStrategy(specialOffer,  price, SKU_PRICES);
         } else {
             return new DefaultPricingStrategy(price);
         }
