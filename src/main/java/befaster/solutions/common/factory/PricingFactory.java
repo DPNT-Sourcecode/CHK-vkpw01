@@ -13,6 +13,7 @@ public class PricingFactory {
 
     public static final Map<Character, Promotion> SKU_PROMOTIONS = new HashMap<>();
 
+
     static {
         SKU_PRICES.put('A', 50);
         SKU_PRICES.put('B', 30);
@@ -49,6 +50,12 @@ public class PricingFactory {
         SKU_OFFERS.put('Q', new Offer[]{new Offer(3,80)});
         SKU_OFFERS.put('V', new Offer[]{new Offer(2,90), new Offer(3, 130)});
 
+        SKU_OFFERS.put('S', new Offer[]{new Offer(3,45)});
+        SKU_OFFERS.put('T', new Offer[]{new Offer(3,45)});
+        SKU_OFFERS.put('X', new Offer[]{new Offer(3,45)});
+        SKU_OFFERS.put('Y', new Offer[]{new Offer(3,45)});
+        SKU_OFFERS.put('Z', new Offer[]{new Offer(3,45)});
+
 
         SKU_PROMOTIONS.put('E', new Promotion(2,'B', 1));
         SKU_PROMOTIONS.put('F', new Promotion(3,'F', 1));
@@ -61,3 +68,4 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
+
