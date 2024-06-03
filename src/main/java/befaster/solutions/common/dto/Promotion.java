@@ -1,4 +1,5 @@
 package befaster.solutions.common.dto;
 
-public record Offer(int quantity, int offerPrice) {
+public record Promotion(int requiredQuantity, char freeItem, int freeQuantity) {
 }
+
