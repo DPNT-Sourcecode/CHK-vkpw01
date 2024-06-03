@@ -70,13 +70,25 @@ public class CheckoutSolution {
 
     private int calculateOfferPrice(int count, int price, Offer[] offers) {
         int total = 0;
-        for (Offer offer : offers) {
-            if(count <= offer.quantity()) {
-                total += (count / offer.quantity()) * offer.offerPrice();
-                count %= offer.quantity();
+        int remainingCount = count;
+        int selectedItem = -1;
+
+        for (int i = 0; i < offers.length; i++) {
+            Offer offer = offers[i];
+            if(remainingCount >= offer.quantity() && selectedItem == -1
+                    || offer.quantity() > offers[selectedItem].quantity()) {
+                selectedItem = i;
             }
         }
 
-        return total + count * price;
+        if (selectedItem != -1) {
+            Offer selectedOffer = offers[selectedItem];
+            total = (remainingCount / selectedOffer.quantity()) * selectedOffer.offerPrice();
+            remainingCount %= selectedOffer.quantity();
+        }
+
+        total += remainingCount * price;
+        return total;
     }
 }
+
