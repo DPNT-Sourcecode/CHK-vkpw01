@@ -21,6 +21,7 @@ public class PricingFactory {
         SKU_PRICES.put('E', 40);
 
         SKU_OFFERS.put('A', new Offer[]{new Offer(5,200), new Offer(3, 130)});
+        SKU_OFFERS.put('B', new Offer[]{new Offer(2,45)});
 
         SKU_PROMOTIONS.put('E', new Promotion(2,'B', 1));
     }

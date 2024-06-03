@@ -32,6 +32,7 @@ class CheckoutSolutionTest {
     @Test
     public void testCheckoutWithDiscounts() {
         assertEquals(130, checkoutSolution.checkout("AAA"));
+        assertEquals(130, checkoutSolution.checkout("AAA"));
     }
 
     @Test
@@ -54,6 +55,5 @@ class CheckoutSolutionTest {
         assertEquals(80, checkoutSolution.checkout("EEB"));
         assertEquals(120, checkoutSolution.checkout("EEEB"));
         assertEquals(160, checkoutSolution.checkout("EEEEBB"));
-
     }
 }
