@@ -67,6 +67,12 @@ class CheckoutSolutionTest {
         assertEquals(90, checkoutSolution.checkout("HHHHHHHHHHH"));
         assertEquals(100, checkoutSolution.checkout("HHHHHHHHHHHH"));
         assertEquals(125, checkoutSolution.checkout("HHHHHHHHHHHHHHH"));
+    }
 
+    @Test
+    public void testAnyPricing() {
+        assertEquals(45, checkoutSolution.checkout("STX"));
+        assertEquals(45, checkoutSolution.checkout("STXSTX"));
+        assertEquals(45, checkoutSolution.checkout("SSSZ"));
     }
 }
