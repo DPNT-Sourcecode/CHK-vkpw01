@@ -23,6 +23,9 @@ public class CheckoutSolution {
 
 
         Map<Character, Integer> itemCounts = countOfItems(skus);
+        if(itemCounts == null) {
+            return -1;
+        }
         applyPromotions(itemCounts);
 
         return calculateTotal(itemCounts);
@@ -33,6 +36,8 @@ public class CheckoutSolution {
         for (char sku : skus.toCharArray()) {
             if (Character.isLetter(sku) && pricingFactory.isValidSku(sku)) {
                 countOfItems.put(sku, countOfItems.getOrDefault(sku, 0) + 1);
+            } else {
+                return null;
             }
         }
         return countOfItems;
@@ -78,4 +83,5 @@ public class CheckoutSolution {
         return total + count * price;
     }
 }
+
 
