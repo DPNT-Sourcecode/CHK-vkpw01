@@ -86,7 +86,7 @@ public class CheckoutSolution {
             for (int i = 0; i < offers.length; i++) {
                 Offer offer = offers[i];
                 if (remainingCount >= offer.quantity()) {
-                    if (offer.quantity() > maxQuantity || remainingCount % offer.quantity() < remainingCount % maxQuantity) {
+                    if (offer.quantity() > maxQuantity || remainingCount % offer.quantity() > remainingCount % maxQuantity) {
                         selectedItem = i;
                         maxQuantity = offer.quantity();
                     }
@@ -105,9 +105,3 @@ public class CheckoutSolution {
             return total;
         }
     }
-
-
-
-
-
-
