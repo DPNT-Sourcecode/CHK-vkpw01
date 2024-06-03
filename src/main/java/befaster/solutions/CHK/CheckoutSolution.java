@@ -81,27 +81,24 @@ public class CheckoutSolution {
 
         if (offers.length > 0) {
             selectedItem = 0;
-            maxQuantity = offers[0].quantity();
 
             for (int i = 0; i < offers.length; i++) {
                 Offer offer = offers[i];
-                if (remainingCount >= offer.quantity()) {
-                    if (offer.quantity() > maxQuantity || remainingCount % offer.quantity() > remainingCount % maxQuantity) {
-                        selectedItem = i;
-                        maxQuantity = offer.quantity();
-                    }
+                if (remainingCount >= offer.quantity()
+                        && (selectedItem == -1 || offer.quantity() > offers[selectedItem].quantity())) {
+                    selectedItem = i;
+                    maxQuantity = offer.quantity();
                 }
             }
         }
 
-            if (selectedItem != -1) {
-                Offer selectedOffer = offers[selectedItem];
-                int offerCount = remainingCount / selectedOffer.quantity();
-                total = offerCount * selectedOffer.offerPrice();
-                remainingCount -= offerCount * selectedOffer.quantity();
-            }
-
-            total += remainingCount * price;
-            return total;
+        if (selectedItem != -1 && remainingCount >= offers[selectedItem].quantity()) {
+            total = (remainingCount / maxQuantity) * offers[selectedItem].offerPrice();
+            remainingCount %= maxQuantity;
         }
+
+        total += remainingCount * price;
+        return total;
     }
+}
+
