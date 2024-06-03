@@ -71,14 +71,10 @@ public class CheckoutSolution {
     private int calculateOfferPrice(int count, int price, Offer[] offers) {
         int total = 0;
         for (Offer offer : offers) {
-            if(count >= offer.quantity()) {
-                total += (count / offer.quantity()) * offer.offerPrice();
-                count %= offer.quantity();
-            } else {
+            if(count <= offer.quantity()) {
                 total += (count / offer.quantity()) * offer.offerPrice();
                 count %= offer.quantity();
             }
-
         }
 
         return total + count * price;
