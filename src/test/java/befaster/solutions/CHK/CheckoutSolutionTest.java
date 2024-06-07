@@ -71,12 +71,12 @@ class CheckoutSolutionTest {
 
     @Test
     public void testAnyPricing() {
-//        assertEquals(45, checkoutSolution.checkout("STX"));
-//        assertEquals(90, checkoutSolution.checkout("STXSTX"));
+        assertEquals(45, checkoutSolution.checkout("STX"));
+        assertEquals(90, checkoutSolution.checkout("STXSTX"));
         assertEquals(65, checkoutSolution.checkout("SSSZ"));
-//        assertEquals(75, checkoutSolution.checkout("SSSB"));
-//        assertEquals(315, checkoutSolution.checkout("SXTSSSTXSAAAA"));
+        assertEquals(75, checkoutSolution.checkout("SSSB"));
+        assertEquals(315, checkoutSolution.checkout("SXTSSSTXSAAAA"));
         assertEquals(62, checkoutSolution.checkout("STXZ"));
-//        assertEquals(1602, checkoutSolution.checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+        assertEquals(1602, checkoutSolution.checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"));
     }
 }

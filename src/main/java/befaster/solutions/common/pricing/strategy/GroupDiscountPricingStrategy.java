@@ -2,8 +2,10 @@ package befaster.solutions.common.pricing.strategy;
 
 import befaster.solutions.common.dto.GroupDiscount;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public class GroupDiscountPricingStrategy implements GroupPricingStrategy {
 
@@ -46,24 +48,14 @@ public class GroupDiscountPricingStrategy implements GroupPricingStrategy {
     private void decrementDiscountedItems(int totalDiscountedSets) {
         int itemsToRemove = totalDiscountedSets * groupDiscount.requiredQuantity();
 
+        PriorityQueue<Character> itemQueue = new PriorityQueue<>(Comparator.comparing(prices::get).reversed());
+        itemQueue.addAll(listOfItems);
 
-        int maxPrice = Integer.MIN_VALUE;
-        for(char item : listOfItems) {
-            int price = prices.get(item);
-            if (price > maxPrice) {
-                maxPrice = price;
-            }
-        }
-
-        for (int i = 0; i < listOfItems.size() && itemsToRemove > 0; ) {
-            char item = listOfItems.get(i);
-            int price = prices.get(item);
-
-            if (groupDiscount.items().contains(item) && itemCounts.get(item) > 0 && price >= maxPrice) {
+        while (itemsToRemove > 0 && !itemQueue.isEmpty()) {
+            char item = itemQueue.poll();
+            if (groupDiscount.items().contains(item) && itemCounts.get(item) > 0) {
                 itemCounts.put(item, itemCounts.get(item) - 1);
                 itemsToRemove--;
-            } else {
-                i++;
             }
         }
     }
