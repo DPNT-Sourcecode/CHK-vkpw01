@@ -2,6 +2,7 @@ package befaster.solutions.CHK;
 
 import befaster.solutions.common.dto.Promotion;
 import befaster.solutions.common.factory.PricingFactory;
+import befaster.solutions.common.pricing.strategy.GroupDiscountPricingStrategy;
 import befaster.solutions.common.pricing.strategy.PricingStrategy;
 
 import java.util.ArrayList;
@@ -36,6 +37,9 @@ public class CheckoutSolution {
             }
         }
 
+        GroupDiscountPricingStrategy groupDiscountPricingStrategy = new GroupDiscountPricingStrategy(listOfItems, itemCounts, GROUP_DISCOUNTS);
+        totalValue += groupDiscountPricingStrategy.applyGroupDiscountAndRemoveItems();
+
         applyPromotions(itemCounts);
 
         return calculateTotalValue(itemCounts, totalValue);
@@ -67,5 +71,6 @@ public class CheckoutSolution {
         return totalValue;
     }
 }
+
 
 
