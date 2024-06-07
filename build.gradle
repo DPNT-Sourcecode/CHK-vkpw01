@@ -17,6 +17,7 @@ repositories {
 
 dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
     implementation 'ro.ghionoiu:tdl-client-java:0.26.5'
     implementation 'com.google.code.gson:gson:2.8.9'
 
@@ -61,4 +62,5 @@ jacocoTestReport {
         html.required = false
     }
 }
+
 

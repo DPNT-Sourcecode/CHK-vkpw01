@@ -25,11 +25,12 @@ public class PricingFactory {
     }
 
     private static PricingConfig loadConfig() {
-        Object
+        ObjectMapper mapper = new ObjectMapper();
     }
 
     public boolean isValidSku(char sku) {
         return SKU_PRICES.containsKey(sku);
     }
 }
+
 
