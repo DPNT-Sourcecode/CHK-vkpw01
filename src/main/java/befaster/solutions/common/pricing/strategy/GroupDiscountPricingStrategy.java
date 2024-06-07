@@ -45,10 +45,21 @@ public class GroupDiscountPricingStrategy implements GroupPricingStrategy {
 
     private void decrementDiscountedItems(int totalDiscountedSets) {
         int itemsToRemove = totalDiscountedSets * groupDiscount.requiredQuantity();
+
+
+        int maxPrice = Integer.MIN_VALUE;
+        for(char item : listOfItems) {
+            int price = prices.get(item);
+            if (price > maxPrice) {
+                maxPrice = price;
+            }
+        }
+
         for (int i = 0; i < listOfItems.size() && itemsToRemove > 0; ) {
             char item = listOfItems.get(i);
-            int itemPrice = prices.get(item);
-            if (groupDiscount.items().contains(item) && itemCounts.get(item) > 0) {
+            int price = prices.get(item);
+
+            if (groupDiscount.items().contains(item) && itemCounts.get(item) > 0 && price >= maxPrice) {
                 itemCounts.put(item, itemCounts.get(item) - 1);
                 itemsToRemove--;
             } else {
