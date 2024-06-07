@@ -12,7 +12,7 @@ class CheckoutSolutionTest {
 
     @BeforeEach
     public void setUp() {
-        PricingFactory pricingFactory = new PricingFactory();
+        PricingFactory pricingFactory = PricingFactory.getInstance();
         checkoutSolution = new CheckoutSolution(pricingFactory);
     }
 

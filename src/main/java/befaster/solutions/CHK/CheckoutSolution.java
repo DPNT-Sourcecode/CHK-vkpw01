@@ -1,10 +1,12 @@
 package befaster.solutions.CHK;
 
-import befaster.solutions.common.dto.Offer;
 import befaster.solutions.common.dto.Promotion;
 import befaster.solutions.common.factory.PricingFactory;
+import befaster.solutions.common.pricing.strategy.PricingStrategy;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static befaster.solutions.common.factory.PricingFactory.*;
@@ -17,30 +19,26 @@ public class CheckoutSolution {
     }
 
     public Integer checkout(String skus) {
+        int totalValue = 0;
+        List<Character> listOfItems = new ArrayList<>();
+
         if (skus == null || skus.isEmpty()) {
             return 0;
         }
 
-        Map<Character, Integer> itemCounts = countOfItems(skus);
-        if (itemCounts == null) {
-            return -1;
+        Map<Character, Integer> itemCounts = new HashMap<>();
+        for (char sku : skus.toCharArray()) {
+            if (Character.isLetter(sku) && pricingFactory.isValidSku(sku)) {
+                listOfItems.add(sku);
+                itemCounts.put(sku, itemCounts.getOrDefault(sku, 0) + 1);
+            } else {
+                return -1;
+            }
         }
 
         applyPromotions(itemCounts);
 
-        return calculateTotal(itemCounts);
-    }
-
-    private Map<Character, Integer> countOfItems(String skus) {
-        Map<Character, Integer> countOfItems = new HashMap<>();
-        for (char sku : skus.toCharArray()) {
-            if (Character.isLetter(sku) && pricingFactory.isValidSku(sku)) {
-                countOfItems.put(sku, countOfItems.getOrDefault(sku, 0) + 1);
-            } else {
-                return null;
-            }
-        }
-        return countOfItems;
+        return calculateTotalValue(itemCounts, totalValue);
     }
 
     private void applyPromotions(Map<Character, Integer> itemCounts) {
@@ -57,51 +55,16 @@ public class CheckoutSolution {
         }
     }
 
-    private Integer calculateTotal(Map<Character, Integer> itemCounts) {
-        int total = 0;
+    private Integer calculateTotalValue(Map<Character, Integer> itemCounts, int totalValue) {
         for (Map.Entry<Character, Integer> entry : itemCounts.entrySet()) {
             char item = entry.getKey();
             int count = entry.getValue();
-            int price = SKU_PRICES.get(item);
 
-            if (SKU_OFFERS.containsKey(item)) {
-                total += calculateOfferPrice(count, price, SKU_OFFERS.get(item));
-            } else {
-                total += count * price;
-            }
-        }
-        return total;
-    }
-
-    private int calculateOfferPrice(int count, int price, Offer[] offers) {
-        int total = 0;
-        int remainingCount = count;
-        int selectedItem = -1;
-
-        if (offers.length > 0) {
-            for (int i = 0; i < offers.length; i++) {
-                Offer offer = offers[i];
-                if (remainingCount >= offer.quantity() &&
-                        (selectedItem == -1 || offer.quantity() > offers[selectedItem].quantity())) {
-                    selectedItem = i;
-                }
-            }
-        }
-
-        if (selectedItem != -1 && remainingCount >= offers[selectedItem].quantity()) {
-            Offer selectedOffer = offers[selectedItem];
-            total = (remainingCount / selectedOffer.quantity()) * selectedOffer.offerPrice();
-            remainingCount %= selectedOffer.quantity();
-
-            if(offers.length > 1 && remainingCount >= offers[0].quantity()) {
-                selectedOffer = offers[0];
-                total += (remainingCount / selectedOffer.quantity() * selectedOffer.offerPrice());
-                remainingCount %= selectedOffer.quantity();
-            }
+            PricingStrategy pricingStrategy = pricingFactory.getStrategy(item);
+            totalValue += pricingStrategy.calculatePrice(count);
 
         }
-
-        total += remainingCount * price;
-        return total;
+        return totalValue;
     }
 }
+

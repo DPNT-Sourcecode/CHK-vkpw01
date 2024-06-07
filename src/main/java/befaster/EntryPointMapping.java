@@ -35,7 +35,7 @@ class EntryPointMapping {
 
 
     EntryPointMapping() {
-        PricingFactory pricingFactory = new PricingFactory();
+        PricingFactory pricingFactory = PricingFactory.getInstance();
         sumSolution = new SumSolution();
         helloSolution = new HelloSolution();
         arraySumSolution = new ArraySumSolution();
@@ -77,3 +77,4 @@ class EntryPointMapping {
         return checkliteSolution.checklite(p.get(0).getAsString());
     }
 }
+
