@@ -47,10 +47,10 @@ public class CheckoutSolution {
 
             Promotion promotion = entry.getValue();
 
-            if (itemCounts.containsKey(promoItem) && itemCounts.containsKey(promotion.freeItem())) {
+            if (itemCounts.containsKey(promoItem) && itemCounts.containsKey(promotion.freeSku())) {
                 int promoItemCount = itemCounts.get(promoItem);
                 int freeItemCount = promoItemCount / promotion.requiredQuantity() * promotion.freeQuantity();
-                itemCounts.put(promotion.freeItem(), Math.max(0, itemCounts.get(promotion.freeItem()) - freeItemCount));
+                itemCounts.put(promotion.freeSku(), Math.max(0, itemCounts.get(promotion.freeSku()) - freeItemCount));
             }
         }
     }
@@ -67,4 +67,5 @@ public class CheckoutSolution {
         return totalValue;
     }
 }
+
 
