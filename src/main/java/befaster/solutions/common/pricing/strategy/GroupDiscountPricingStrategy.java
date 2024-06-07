@@ -1,7 +1,6 @@
 package befaster.solutions.common.pricing.strategy;
 
 import befaster.solutions.common.dto.GroupDiscount;
-import befaster.solutions.common.dto.Offer;
 
 import java.util.List;
 import java.util.Map;
