@@ -67,4 +67,3 @@ public class PricingFactory {
         return SKU_PRICES.containsKey(sku);
     }
 }
-

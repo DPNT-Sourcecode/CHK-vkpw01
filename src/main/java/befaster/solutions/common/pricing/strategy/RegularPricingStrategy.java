@@ -13,4 +13,3 @@ public class RegularPricingStrategy implements PricingStrategy {
         return unitPrice * count;
     }
 }
-

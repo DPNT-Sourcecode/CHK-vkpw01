@@ -4,4 +4,3 @@ public interface GroupPricingStrategy {
     int applyGroupDiscountAndRemoveItems();
 
 }
-

@@ -71,7 +71,3 @@ public class CheckoutSolution {
         return totalValue;
     }
 }
-
-
-
-

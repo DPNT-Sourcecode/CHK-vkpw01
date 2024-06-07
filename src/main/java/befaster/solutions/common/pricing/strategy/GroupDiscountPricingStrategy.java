@@ -57,5 +57,3 @@ public class GroupDiscountPricingStrategy implements GroupPricingStrategy {
         }
     }
 }
-
-

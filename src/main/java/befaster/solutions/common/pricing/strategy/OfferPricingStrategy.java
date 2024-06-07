@@ -37,5 +37,3 @@ public class OfferPricingStrategy implements PricingStrategy {
         return itemCost[itemCount];
     }
 }
-
-

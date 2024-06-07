@@ -4,4 +4,3 @@ public interface PricingStrategy {
     int calculatePrice(int count);
 
 }
-
