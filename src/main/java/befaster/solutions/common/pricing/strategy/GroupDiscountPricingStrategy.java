@@ -9,11 +9,13 @@ public class GroupDiscountPricingStrategy implements GroupPricingStrategy {
 
     private final List<Character> listOfItems;
     private final Map<Character, Integer> itemCounts;
+    private final Map<Character, Integer> prices;
     private final GroupDiscount groupDiscount;
 
-    public GroupDiscountPricingStrategy(List<Character> listOfItems, Map<Character, Integer> itemCounts, GroupDiscount groupDiscount) {
+    public GroupDiscountPricingStrategy(List<Character> listOfItems, Map<Character, Integer> itemCounts, Map<Character, Integer> prices, GroupDiscount groupDiscount) {
         this.listOfItems = listOfItems;
         this.itemCounts = itemCounts;
+        this.prices = prices;
         this.groupDiscount = groupDiscount;
     }
 
@@ -45,6 +47,7 @@ public class GroupDiscountPricingStrategy implements GroupPricingStrategy {
         int itemsToRemove = totalDiscountedSets * groupDiscount.requiredQuantity();
         for (int i = 0; i < listOfItems.size() && itemsToRemove > 0; ) {
             char item = listOfItems.get(i);
+            int itemPrice = prices.get(item);
             if (groupDiscount.items().contains(item) && itemCounts.get(item) > 0) {
                 itemCounts.put(item, itemCounts.get(item) - 1);
                 itemsToRemove--;
@@ -54,4 +57,5 @@ public class GroupDiscountPricingStrategy implements GroupPricingStrategy {
         }
     }
 }
+
 

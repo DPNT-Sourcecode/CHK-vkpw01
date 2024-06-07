@@ -37,7 +37,7 @@ public class CheckoutSolution {
             }
         }
 
-        GroupDiscountPricingStrategy groupDiscountPricingStrategy = new GroupDiscountPricingStrategy(listOfItems, itemCounts, GROUP_DISCOUNTS);
+        GroupDiscountPricingStrategy groupDiscountPricingStrategy = new GroupDiscountPricingStrategy(listOfItems, itemCounts, SKU_PRICES,  GROUP_DISCOUNTS);
         totalValue += groupDiscountPricingStrategy.applyGroupDiscountAndRemoveItems();
 
         applyPromotions(itemCounts);
@@ -71,6 +71,7 @@ public class CheckoutSolution {
         return totalValue;
     }
 }
+
 
 
 
